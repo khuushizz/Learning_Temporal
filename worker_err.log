@@ -1,0 +1,1575 @@
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:42:53] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:42:53] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 1, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-ac496526-a2c4-4cc1-9fb9-ae2d6a4e87a4', 'workflow_run_id': '01a13185-8f6c-7d5a-8e9f-03517c4dafa1', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:42:56] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:42:56] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 2, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-ac496526-a2c4-4cc1-9fb9-ae2d6a4e87a4', 'workflow_run_id': '01a13185-8f6c-7d5a-8e9f-03517c4dafa1', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:43:06] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:43:06] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 4, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-ac496526-a2c4-4cc1-9fb9-ae2d6a4e87a4', 'workflow_run_id': '01a13185-8f6c-7d5a-8e9f-03517c4dafa1', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:43:16] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:43:16] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 5, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-ac496526-a2c4-4cc1-9fb9-ae2d6a4e87a4', 'workflow_run_id': '01a13185-8f6c-7d5a-8e9f-03517c4dafa1', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:45:12] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:45:13] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 8, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-ac496526-a2c4-4cc1-9fb9-ae2d6a4e87a4', 'workflow_run_id': '01a13185-8f6c-7d5a-8e9f-03517c4dafa1', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:46:54] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:46:54] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 1, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-c4d2ff77-56c4-48ad-8380-f420447a447b', 'workflow_run_id': '01a1318b-af45-7069-b533-7b6e3def10c9', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:46:57] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:46:57] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 2, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-c4d2ff77-56c4-48ad-8380-f420447a447b', 'workflow_run_id': '01a1318b-af45-7069-b533-7b6e3def10c9', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:01] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:47:01] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 3, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-c4d2ff77-56c4-48ad-8380-f420447a447b', 'workflow_run_id': '01a1318b-af45-7069-b533-7b6e3def10c9', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:07] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:47:07] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 4, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-c4d2ff77-56c4-48ad-8380-f420447a447b', 'workflow_run_id': '01a1318b-af45-7069-b533-7b6e3def10c9', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:14] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:47:14] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 1, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-f6e6e48b-ec69-4445-b36d-244f8fc63ea8', 'workflow_run_id': '01a1318c-1312-7acf-82d7-47dd2d28e54b', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:17] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:17] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:47:17] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         flaky_tool called (always-fail mode)
+|
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+[10/13/26 00:47:17] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 2, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-f6e6e48b-ec69-4445-b36d-244f8fc63ea8', 'workflow_run_id': '01a1318c-1312-7acf-82d7-47dd2d28e54b', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 5, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-c4d2ff77-56c4-48ad-8380-f420447a447b', 'workflow_run_id': '01a1318b-af45-7069-b533-7b6e3def10c9', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:35] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:47:35] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 5, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-f6e6e48b-ec69-4445-b36d-244f8fc63ea8', 'workflow_run_id': '01a1318c-1312-7acf-82d7-47dd2d28e54b', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:47:53] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:47:54] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 6, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-f6e6e48b-ec69-4445-b36d-244f8fc63ea8', 'workflow_run_id': '01a1318c-1312-7acf-82d7-47dd2d28e54b', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:48:08] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:48:08] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 7, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-c4d2ff77-56c4-48ad-8380-f420447a447b', 'workflow_run_id': '01a1318b-af45-7069-b533-7b6e3def10c9', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:50:43] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:50:43] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 4, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-979feda0-883e-42a2-b55d-df3de3d0c86b', 'workflow_run_id': '01a1318f-0b0d-7c2d-8576-140a64122b7f', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 00:50:53] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 00:50:53] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 5, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-979feda0-883e-42a2-b55d-df3de3d0c86b', 'workflow_run_id': '01a1318f-0b0d-7c2d-8576-140a64122b7f', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 13:14:40] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 13:14:40] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 1, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-aeeb870d-4274-45bf-b7b8-48b4549b4d91', 'workflow_run_id': '01a13437-df6e-7a32-af01-65b8cd26e3f3', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 13:14:44] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 13:14:44] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 2, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-aeeb870d-4274-45bf-b7b8-48b4549b4d91', 'workflow_run_id': '01a13437-df6e-7a32-af01-65b8cd26e3f3', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 13:14:56] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 13:14:57] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 4, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-aeeb870d-4274-45bf-b7b8-48b4549b4d91', 'workflow_run_id': '01a13437-df6e-7a32-af01-65b8cd26e3f3', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
+
+
++-----------------------------------------------------------------------------+
+|                                                                             |
+|                                                                             |
+|                        \u2584\u2580\u2580 \u2584\u2580\u2588 \u2588\u2580\u2580 \u2580\u2588\u2580 \u2588\u2580\u2584\u2580\u2588 \u2588\u2580\u2580 \u2588\u2580\u2588                        |
+|                        \u2588\u2580  \u2588\u2580\u2588 \u2584\u2584\u2588  \u2588  \u2588 \u2580 \u2588 \u2588\u2584\u2584 \u2588\u2580\u2580                        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                FastMCP 4.1.0                                |
+|                            https://gofastmcp.com                            |
+|                                                                             |
+|                 \U0001f5a5  Server:      flaky-server, 4.1.0                         |
+|                 \U0001f680 Deploy free: https://horizon.prefect.io                  |
+|                                                                             |
++-----------------------------------------------------------------------------+
+
+
+[10/13/26 13:15:07] INFO     Starting MCP server               transport.py:241
+                             'flaky-server' with transport                     
+                             'stdio'                                           
+flaky_tool called (always-fail mode)
+[10/13/26 13:15:08] Error calling tool 'flaky_tool'                            
+                    +----------- Traceback (most recent call last) -----------+
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\server\server.py:1467 in call_tool                    |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\base.py:440 in _run                             |
+                    |                                                         |
+                    |                ... 10 frames hidden ...                 |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\.venv\Lib\site-packages\fastmc |
+                    | p\tools\function_tool.py:96 in wrapper                  |
+                    |                                                         |
+                    | C:\Users\k8\OneDrive - Deloitte                         |
+                    | (O365D)\Desktop\Temporal\mcp_server\flaky_server.py:32  |
+                    | in flaky_tool                                           |
+                    |                                                         |
+                    |   29     if flaky_failures == "always":                 |
+                    |   30         # Default: every call raises — simulates a |
+                    |      service.                                           |
+                    |   31         print("flaky_tool called (always-fail mode |
+                    | > 32         raise RuntimeError("flaky_tool failed: sim |
+                    |   33                                                    |
+                    |   34     # Integer mode: raise for the first N calls, t |
+                    |   35     try:                                           |
+                    +---------------------------------------------------------+
+                    RuntimeError: flaky_tool failed: simulated downstream      
+                    outage                                                     
+Completing activity as failed ({'activity_id': '2', 'activity_type': 'call_flaky_tool_activity', 'attempt': 5, 'namespace': 'default', 'task_queue': 'story-queue', 'workflow_id': 'story-aeeb870d-4274-45bf-b7b8-48b4549b4d91', 'workflow_run_id': '01a13437-df6e-7a32-af01-65b8cd26e3f3', 'workflow_type': 'StoryWorkflow'})
+Traceback (most recent call last):
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 351, in _handle_start_activity_task
+    result = await self._execute_activity(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        start, running_activity, task_token, data_converter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 681, in _execute_activity
+    return await impl.execute_activity(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\.venv\Lib\site-packages\temporalio\worker\_activity.py", line 889, in execute_activity
+    return await input.fn(*input.args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\activities.py", line 35, in call_flaky_tool_activity
+    return await call_flaky_tool(story)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\k8\OneDrive - Deloitte (O365D)\Desktop\Temporal\app\mcp_client.py", line 57, in call_flaky_tool
+    raise RuntimeError(" ".join(texts) or "flaky_tool failed")
+RuntimeError: Error calling tool 'flaky_tool': flaky_tool failed: simulated downstream outage
